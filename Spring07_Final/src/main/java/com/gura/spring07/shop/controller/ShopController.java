@@ -1,0 +1,50 @@
+package com.gura.spring07.shop.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.gura.spring07.shop.service.ShopService;
+
+@Controller
+public class ShopController {
+	
+	@Autowired
+	private ShopService service;
+	
+	//상품 목록 보기 요청 처리 
+	@RequestMapping("/shop/list")
+	public ModelAndView list(ModelAndView mView){
+		service.getList(mView);
+		
+		mView.setViewName("shop/list");
+		return mView;
+	}
+	//상품 구입 요청처리
+	@RequestMapping("/shop/buy")
+	public ModelAndView authBuy(HttpServletRequest request,
+			ModelAndView mView){
+		service.buy(request, mView);
+		mView.setViewName("shop/buy");
+		return mView;
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
